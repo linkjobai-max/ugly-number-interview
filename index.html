@@ -1,0 +1,23 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ugly Number (LeetCode 263): Divide Out 2, 3 and 5</title><style>body{max-width:760px;margin:2rem auto;padding:0 1rem;font-family:system-ui,sans-serif;line-height:1.6}pre{background:#f4f4f4;padding:1rem;overflow:auto}</style></head><body><h1>Ugly Number (LeetCode 263): Divide Out 2, 3 and 5</h1>
+<p>An ugly number is a positive integer whose only prime factors are 2, 3 and 5. Given <code>n</code>, return whether it's ugly. <code>6</code> is ugly, <code>14</code> is not (it has a factor of 7), and <code>1</code> counts as ugly by convention.</p>
+<h2>Strip the allowed factors</h2>
+<p>Divide <code>n</code> by 2, 3 and 5 as long as it's divisible. If what's left is 1, nothing else was hiding in there.</p>
+<pre><code class="language-python">def is_ugly(n: int) -&gt; bool:
+    if n &lt;= 0:
+        return False
+    for p in (2, 3, 5):
+        while n % p == 0:
+            n //= p
+    return n == 1
+</code></pre>
+<p>Each division at least halves <code>n</code>, so the loop runs O(log n) times.</p>
+<h2>Edge cases</h2>
+<ul>
+<li><code>n &lt;= 0</code> is never ugly; without that guard, <code>0 % 2 == 0</code> loops forever.</li>
+<li><code>n == 1</code> returns True immediately.</li>
+</ul>
+<h2>The follow-up: Ugly Number II</h2>
+<p>If asked for the nth ugly number, switch to three pointers merging the sequences <code>2x</code>, <code>3x</code> and <code>5x</code>. Mentioning that you know the follow-up exists is a nice signal.</p>
+<h2>Interview tip</h2>
+<p>Call out the zero guard before you code it. Practising that habit of naming edge cases first is easier with a tool like <a href="https://www.linkjob.ai/coding-interview-copilot/">Linkjob AI's coding interview copilot</a>.</p>
+<p><em>Disclosure: I work on Linkjob AI.</em></p></body></html>
